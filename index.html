@@ -1,0 +1,1009 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialPay - Monetize Your Social Media</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #60a5fa;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+       
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat-item p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Features Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background-color: var(--light);
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            position: relative;
+        }
+        
+        .step {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .steps::before {
+            content: "";
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background-color: var(--accent);
+            z-index: 0;
+        }
+        
+        /* Pricing Section */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 15px var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .popular {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background-color: var(--warning);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #64748b;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light);
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .testimonial-rating {
+            color: var(--warning);
+        }
+        
+        /* Call to Action */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Dashboard Section (Simulated) */
+        .dashboard-section {
+            display: none;
+            padding: 50px 0;
+        }
+        
+        .dashboard-title {
+            margin-bottom: 30px;
+        }
+        
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .stat-card h3 {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .recent-activity {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .activity-list {
+            list-style: none;
+        }
+        
+        .activity-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(37, 99, 235, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .activity-icon i {
+            color: var(--primary);
+        }
+        
+        .activity-content {
+            flex-grow: 1;
+        }
+        
+        .activity-content h4 {
+            margin-bottom: 5px;
+        }
+        
+        .activity-time {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .activity-amount {
+            font-weight: bold;
+            color: var(--success);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .stats {
+                justify-content: center;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu, .auth-buttons {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>SocialPay</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="active">Home</a>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#" id="dashboard-link">Dashboard</a>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="window.location.href='login.html'">Log In</button>
+                <button class="btn btn-primary">Sign Up</button>
+            </div>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Turn Your Social Engagement Into Real Income</h1>
+                    <p>Get paid for every like, view, and share on your social media content. Monetize your influence with SocialPay.</p>
+                    <button class="btn btn-primary" onclick="window.location.href='login.html'">Get Started Today</button>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h3>15M+</h3>
+                            <p>Likes Earned</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>8M+</h3>
+                            <p>Content Views</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>$5M+</h3>
+                            <p>Paid to Creators</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600" alt="Social Media Monetization">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Everything you need to monetize your social media presence effectively</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Instant Payouts</h3>
+                    <p>Get paid instantly when you reach your payment threshold. No waiting for monthly payments.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Track your earnings, views, and engagement in real-time with our comprehensive dashboard.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Multi-platform Support</h3>
+                    <p>Connect and monetize content from Instagram, YouTube, TikTok, Twitter, and more.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>Bank-level security ensures your earnings and personal information are always protected.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Start earning from your social content in just three simple steps</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Connect Accounts</h3>
+                    <p>Link your social media accounts to SocialPay in seconds</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Create Content</h3>
+                    <p>Post content as you normally would on your social platforms</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Paid</h3>
+                    <p>Earn money for every like, view, and share your content receives</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section (Initially hidden) -->
+    <section class="dashboard-section container" id="dashboard">
+        <div class="dashboard-title">
+            <h2>Your Earnings Dashboard</h2>
+            <p>Track your social media earnings in real-time</p>
+        </div>
+        
+        <div class="stats-cards">
+            <div class="stat-card">
+                <h3>Total Earnings</h3>
+                <div class="stat-value">$1,245.75</div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>This Month</h3>
+                <div class="stat-value">$328.50</div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Likes Today</h3>
+                <div class="stat-value">1,428</div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Views Today</h3>
+                <div class="stat-value">24,893</div>
+            </div>
+        </div>
+        
+        <div class="recent-activity">
+            <h3>Recent Activity</h3>
+            <ul class="activity-list">
+                <li class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h4>Instagram Post Liked</h4>
+                        <p>Your beach vacation photo received 128 likes</p>
+                    </div>
+                    <div class="activity-time">2 hours ago</div>
+                    <div class="activity-amount">+$1.28</div>
+                </li>
+                
+                <li class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h4>TikTok Video Viewed</h4>
+                        <p>Your dance tutorial received 4,283 views</p>
+                    </div>
+                    <div class="activity-time">5 hours ago</div>
+                    <div class="activity-amount">+$4.28</div>
+                </li>
+                
+                <li class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h4>YouTube Video Viewed</h4>
+                        <p>Your cooking video received 12,492 views</p>
+                    </div>
+                    <div class="activity-time">Yesterday</div>
+                    <div class="activity-amount">+$12.49</div>
+                </li>
+                
+                <li class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h4>Tweet Liked</h4>
+                        <p>Your viral tweet received 842 likes</p>
+                    </div>
+                    <div class="activity-time">2 days ago</div>
+                    <div class="activity-amount">+$8.42</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Choose the plan that works best for your social media presence</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">NGN7,000</div>
+                    <ul class="pricing-features">
+                        <li>Only one social account</li>
+                        <li>$0.01 per like</li>
+                        <li>$0.001 per view</li>
+                        <li>Basic analytics</li>
+                        <li>Monthly payouts</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="window.location.href='login.html'">Get Started</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="popular">POPULAR</div>
+                    <h3>Influencer</h3>
+                    <div class="price">NGN15,000</div>
+                    <ul class="pricing-features">
+                        <li>Up to 3 social accounts</li>
+                        <li>$0.015 per like</li>
+                        <li>$0.0015 per view</li>
+                        <li>Advanced analytics</li>
+                        <li>Weekly payouts</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="window.location.href='login'">Get Started</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Professional</h3>
+                    <div class="price">NGN25,000</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited social accounts</li>
+                        <li>$0.02 per like</li>
+                        <li>$0.002 per view</li>
+                        <li>Premium analytics</li>
+                        <li>Daily payouts</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="window.location.href='login.html'">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Monetize Your Social Media?</h2>
+            <p>Join thousands of creators already earning from their content. Sign up today and start getting paid for your influence.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary">Start Earning Now</button>
+                <button class="btn btn-outline" style="background-color: rgba(255,255,255,0.1); color: white; border-color: white;">View Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div class="footer-logo">SocialPay</div>
+                    <p>Turning social engagement into real income for content creators worldwide.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 SocialPay. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dashboardLink = document.getElementById('dashboard-link');
+            const dashboardSection = document.getElementById('dashboard');
+            
+            dashboardLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Hide all sections
+                document.querySelectorAll('.hero, .section, .cta').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show dashboard
+                dashboardSection.style.display = 'block';
+                
+                // Scroll to dashboard
+                dashboardSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Simulate real-time earnings updates
+            setInterval(() => {
+                const likesToday = document.querySelector('.stat-card:nth-child(3) .stat-value');
+                const viewsToday = document.querySelector('.stat-card:nth-child(4) .stat-value');
+                
+                // Get current values
+                let currentLikes = parseInt(likesToday.textContent.replace(/,/g, ''));
+                let currentViews = parseInt(viewsToday.textContent.replace(/,/g, ''));
+                
+                // Generate random increments
+                const newLikes = currentLikes + Math.floor(Math.random() * 20);
+                const newViews = currentViews + Math.floor(Math.random() * 300);
+                
+                // Update display
+                likesToday.textContent = newLikes.toLocaleString();
+                viewsToday.textContent = newViews.toLocaleString();
+                
+                // Update total earnings (simplified)
+                const earningsCard = document.querySelector('.stat-card:nth-child(1) .stat-value');
+                const currentEarnings = parseFloat(earningsCard.textContent.replace('$', '').replace(/,/g, ''));
+                const newEarnings = currentEarnings + (Math.random() * 0.5);
+                earningsCard.textContent = '$' + newEarnings.toFixed(2);
+                
+            }, 5000); // Update every 5 seconds
+        });
+    </script>
+</body>
+</html>
+

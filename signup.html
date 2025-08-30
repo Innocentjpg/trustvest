@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialPay - Register & Monetize Your Social Media</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #60a5fa;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f7ff, #e6f0ff);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Registration Section */
+        .register-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 0;
+            flex-grow: 1;
+        }
+        
+        .register-wrapper {
+            display: flex;
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .register-info {
+            flex: 1;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .register-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .register-info ul {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .register-info li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .register-info i {
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .register-card {
+            flex: 1;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .register-header {
+            text-align: center;
+        }
+        
+        .register-header h1 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .register-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+            outline: none;
+        }
+        
+        .password-strength {
+            height: 6px;
+            border-radius: 3px;
+            background-color: var(--border);
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--danger);
+            transition: width 0.3s;
+        }
+        
+        .password-strength.weak .password-strength-bar {
+            width: 33%;
+            background-color: var(--danger);
+        }
+        
+        .password-strength.medium .password-strength-bar {
+            width: 66%;
+            background-color: var(--warning);
+        }
+        
+        .password-strength.strong .password-strength-bar {
+            width: 100%;
+            background-color: var(--success);
+        }
+        
+        .password-hints {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .pin-section {
+            background-color: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px dashed var(--accent);
+            margin: 10px 0;
+        }
+        
+        .pin-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .pin-section h3 i {
+            color: var(--primary);
+        }
+        
+        .pin-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .pin-option {
+            flex: 1;
+            min-width: 200px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pin-option:hover, .pin-option.selected {
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .pin-option.selected {
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .pin-option h4 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .pin-option .price {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .pin-option .benefits {
+            list-style: none;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        .pin-option .benefits li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+        
+        .pin-option .benefits i {
+            color: var(--success);
+            font-size: 0.8rem;
+        }
+        
+        .register-button {
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .register-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .login-link {
+            text-align: center;
+            color: #64748b;
+            font-size: 1rem;
+        }
+        
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+            transition: color 0.3s;
+        }
+        
+        .login-link a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .register-wrapper {
+                flex-direction: column;
+            }
+            
+            .register-info {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .register-card {
+                padding: 30px 25px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 25px 20px;
+            }
+            
+            .pin-options {
+                flex-direction: column;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .register-card {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .logo i {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #64748b;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .payment-options {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .payment-option {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-option:hover, .payment-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .payment-option i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>SocialPay</span>
+            </a>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="window.location.href='index.html'">Home</button>
+                <button class="btn btn-primary" onclick="window.location.href='login.html'">Log In</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Section -->
+    <div class="register-container">
+        <div class="container">
+            <div class="register-wrapper">
+                <div class="register-info">
+                    <h2>Start Monetizing Your Social Media Today</h2>
+                    <p>Join thousands of creators earning from their content</p>
+                    <ul>
+                        <li>
+                            <i class="fas fa-dollar-sign"></i>
+                            <div>Earn money for every like, view, and share</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-line"></i>
+                            <div>Real-time analytics and performance tracking</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-bolt"></i>
+                            <div>Instant payouts when you reach your threshold</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-shield-alt"></i>
+                            <div>Secure payments and data protection</div>
+                        </li>
+                    </ul>
+                    <div class="stats" style="display: flex; gap: 30px; margin-top: 20px;">
+                        <div>
+                            <h3 style="font-size: 2rem;">$5M+</h3>
+                            <p>Paid to creators</p>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 2rem;">100K+</h3>
+                            <p>Active creators</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="register-card">
+                    <div class="register-header">
+                        <h1>Create Your Account</h1>
+                        <p>Join SocialPay and start earning from your social content</p>
+                    </div>
+                    
+                    <form class="register-form" id="registerForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="firstName" class="form-control" placeholder="Enter your first name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="lastName" class="form-control" placeholder="Enter your last name" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+                            </div>
+                            <div class="password-strength" id="passwordStrength">
+                                <div class="password-strength-bar"></div>
+                            </div>
+                            <div class="password-hints">
+                                Use 8+ characters with a mix of letters, numbers & symbols
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                            </div>
+                        </div>
+                        
+                        <div class="pin-section">
+                            <h3>
+                                <i class="fas fa-key"></i>
+                                Registration PIN
+                            </h3>
+                            <p>A PIN is required to complete your registration and start monetizing your content.</p>
+                            
+                            <div class="form-group">
+                                <label for="pin">Enter Your PIN</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-tag"></i>
+                                    <input type="text" id="pin" class="form-control" placeholder="Enter 12-digit PIN" maxlength="12">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" style="margin-top: 20px;">
+                                <h3 style="margin-bottom: 15px;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Don't have a PIN? Purchase one now
+                                </h3>
+                                <div class="pin-options">
+                                    <div class="pin-option" data-price="NGN7,000" data-pin="BASIC">
+                                        <h4>Basic <span class="price">NGN7,000</span></h4>
+                                        <ul class="benefits">
+                                            <li><i class="fas fa-check"></i> Monetize only one platform</li>
+                                            <li><i class="fas fa-check"></i> $0.01 per like</li>
+                                            <li><i class="fas fa-check"></i> $0.001 per view</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="pin-option selected" data-price="NGN15,000" data-pin="PRO">
+                                        <h4>Pro <span class="price">NGN15,000</span></h4>
+                                        <ul class="benefits">
+                                            <li><i class="fas fa-check"></i> Monetize up to 3 platforms</li>
+                                            <li><i class="fas fa-check"></i> $0.02 per like</li>
+                                            <li><i class="fas fa-check"></i> $0.002 per view</li>
+                                            <li><i class="fas fa-check"></i> Priority support</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="pin-option" data-price="NGN25,000" data-pin="PREMIUM">
+                                        <h4>Premium <span class="price">NGN25,000</span></h4>
+                                        <ul class="benefits">
+                                            <li><i class="fas fa-check"></i> Monetize unlimited platforms</li>
+                                            <li><i class="fas fa-check"></i> $0.03 per like</li>
+                                            <li><i class="fas fa-check"></i> $0.003 per view</li>
+                                            <li><i class="fas fa-check"></i> Premium analytics</li>
+                                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="buyPinBtn">
+                                    <i class="fas fa-shopping-cart"></i> Buy PIN Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 10px;">
+                            <div style="display: flex; align-items: flex-start; gap: 10px;">
+                                <input type="checkbox" id="terms" style="margin-top: 3px;" required>
+                                <label for="terms">I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a></label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="register-button">Create Account</button>
+                        
+                        <p class="login-link">Already have an account? <a href="login.html">Sign In</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="register-header">
+                <h1>Purchase Registration PIN</h1>
+            </div>
+            
+            <div class="form-group" style="margin: 20px 0;">
+                <label>Selected Package</label>
+                <div style="background-color: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; font-weight: bold;">
+                    <span id="selectedPackage">Pro Package (NGN35,000)</span>
+                </div>
+            </div>
+            <div>
+                <h2>Vendor Account Detail</h2>
+                <h4>Send the exact amount to the account below</h4>
+                <h3>7060523384</h3>
+                <h3>Monipoint MFB</h3>
+                <h3>Innocent Joseph</h3>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cvv">input phone number</label>
+                    <input type="text" id="cvv" class="form-control" placeholder="input your phone number">
+                </div>
+            </div>
+            <button class="register-button" style="width: 100%;" id="completePurchase">
+                <i class="fas fa-lock"></i> Pay Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div class="footer-logo">SocialPay</div>
+                    <p>Turning social engagement into real income for content creators worldwide.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 SocialPay. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Password strength indicator
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('passwordStrength');
+        
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            let strength = 0;
+            
+            if (password.length >= 8) strength += 1;
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+            
+            passwordStrength.className = 'password-strength';
+            
+            if (strength <= 1) {
+                passwordStrength.classList.add('weak');
+            } else if (strength <= 3) {
+                passwordStrength.classList.add('medium');
+            } else {
+                passwordStrength.classList.add('strong');
+            }
+        });
+        
+        // PIN selection
+        const pinOptions = document.querySelectorAll('.pin-option');
+        let selectedPin = 'PRO';
+        
+        pinOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                pinOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedPin = this.dataset.pin;
+            });
+        });
+        
+        // Modal functionality
+        const modal = document.getElementById('purchaseModal');
+        const buyPinBtn = document.getElementById('buyPinBtn');
+        const closeModal = document.getElementById('closeModal');
+        const selectedPackage = document.getElementById('selectedPackage');
+        
+        buyPinBtn.addEventListener('click', function() {
+            const selected = document.querySelector('.pin-option.selected');
+            const price = selected.dataset.price;
+            const pinType = selected.dataset.pin;
+            
+            selectedPackage.textContent = `${pinType} Package (${price})`;
+            modal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Payment method selection
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Form validation
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const pin = document.getElementById('pin').value;
+            
+            // Simple validation
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+            
+            if (!pin) {
+                alert('Please enter a registration PIN');
+                return;
+            }
+            
+            if (pin.length !== 12) {
+                alert('PIN must be 12 characters long');
+                return;
+            }
+            
+            // Simulate registration process
+            const registerBtn = document.querySelector('.register-button');
+            registerBtn.textContent = 'Creating Account...';
+            registerBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert('Incorrect Pin. Purchase your pin to continue your registration');
+
+            }, 2000);
+        });
+        
+        // Simulate purchase completion
+        document.getElementById('completePurchase').addEventListener('click', function() {
+            // Generate a random PIN
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let pin = '';
+            for (let i = 0; i < 12; i++) {
+                pin += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            // Fill in the PIN field
+            document.getElementById('pin').value = "";
+            
+            // Close the modal
+            modal.style.display = 'none';
+            
+            // Show success message
+            alert(`payment not received. Please make a payment`);
+        });
+    </script>
+</body>
+</html>
